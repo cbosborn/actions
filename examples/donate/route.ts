@@ -30,6 +30,7 @@ app.openapi(
   (c) => {
     const { icon, title, description } = getDonateInfo();
     const amountParameterName = 'amount';
+    const thankYouNote = 'thankYouNote';
     const response: ActionGetResponse = {
       icon,
       label: `${DEFAULT_DONATION_AMOUNT_SOL} SOL`,
@@ -42,12 +43,16 @@ app.openapi(
             href: `/api/donate/${amount}`,
           })),
           {
-            href: `/api/donate/{${amountParameterName}}`,
+            href: `/api/donate/{${amountParameterName}}/{${thankYouNote}}`,
             label: 'Donate',
             parameters: [
               {
                 name: amountParameterName,
                 label: 'Enter a custom SOL amount',
+              },
+              {
+                name: thankYouNote,
+                label: 'Thank you note',
               },
             ],
           },
